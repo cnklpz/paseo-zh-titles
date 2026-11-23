@@ -1,0 +1,8 @@
+{
+  "id": "paseo-zh-titles",
+  "name": "标题中文化",
+  "description": "让 Paseo 自动生成的工作区和代理标题使用简体中文。",
+  "requirements": {
+    "paseo": ">=0.14.0"
+  }
+}
