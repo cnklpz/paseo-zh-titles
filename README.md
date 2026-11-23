@@ -23,14 +23,19 @@ Paseo >= 0.14 is required for plugin hooks. This was tested on 0.17.3 with the d
 
 ## Install
 
-Clone this repository, then run:
+```text
+paseo plugin install git:cnklpz/paseo-zh-titles
+paseo plugin enable paseo-zh-titles
+```
+
+Paseo keeps its own managed copy under `PASEO_HOME/plugins/`, so the source repository can be moved or deleted afterwards.
+
+For development against a local checkout, install the directory instead. The plugin then runs from that checkout, and moving or deleting the folder breaks it:
 
 ```text
 paseo plugin install /path/to/paseo-zh-titles     # Windows: F:\path\to\paseo-zh-titles
 paseo plugin enable paseo-zh-titles
 ```
-
-Directory installs read the checkout directly. Moving or deleting the folder breaks the plugin.
 
 ## Verify
 

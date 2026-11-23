@@ -23,14 +23,19 @@ Paseo 使用一次小型单次调用生成标题，提示词只有英文（`pack
 
 ## 安装
 
-克隆本仓库，然后运行：
+```text
+paseo plugin install git:cnklpz/paseo-zh-titles
+paseo plugin enable paseo-zh-titles
+```
+
+Paseo 会把插件托管副本放在 `PASEO_HOME/plugins/` 下，之后可以移动或删除源仓库。
+
+开发时如果要直接使用本地 checkout，再改用目录安装。插件会从该目录运行，移动或删除目录都会导致插件失效：
 
 ```text
 paseo plugin install /path/to/paseo-zh-titles     # Windows: F:\path\to\paseo-zh-titles
 paseo plugin enable paseo-zh-titles
 ```
-
-目录安装会直接读取该 checkout。移动或删除目录会导致插件失效。
 
 ## 验证
 
