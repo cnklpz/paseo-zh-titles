@@ -2,6 +2,8 @@
 
 Keep Paseo auto-generated workspace and agent titles in Simplified Chinese. [简体中文](README.zh-CN.md)
 
+Unofficial community plugin. Not affiliated with or endorsed by Paseo.
+
 When Paseo creates a workspace or agent, this plugin adds a Simplified Chinese instruction to the internal title-generation request. The generated title is Chinese while filenames, paths, commands, identifiers, and other proper content remain unchanged; the git branch remains an ASCII lowercase slug.
 
 ## Why this exists
@@ -24,7 +26,7 @@ Paseo >= 0.14 is required for plugin hooks. This was tested on 0.17.3 with the d
 Clone this repository, then run:
 
 ```text
-paseo plugin install F:\path\to\paseo-zh-titles
+paseo plugin install /path/to/paseo-zh-titles     # Windows: F:\path\to\paseo-zh-titles
 paseo plugin enable paseo-zh-titles
 ```
 
@@ -49,13 +51,13 @@ Using the same Paseo metadata prompt, the same Chinese seed, and model `claude-h
 
 - The hook depends on the internal title string `Branch name generator`. If Paseo renames it, change `TARGET_TITLE`; the symptom is that titles silently revert to English.
 - It only affects titles generated after installation.
-- It does not touch commit messages, PR text, or branch names. For those, use repository-level `paseo.json` -> `metadataGeneration.title.instructions`, which is more deterministic but applies per repository.
+- This plugin only covers titles. For other metadata types, use repository-level `paseo.json` keys: `metadataGeneration.title.instructions`, `metadataGeneration.branchName.instructions`, `metadataGeneration.commitMessage.instructions`, and `metadataGeneration.pullRequest.instructions`. Each entry replaces Paseo's default style for that artifact; the file must be committed to the base branch.
 - The instruction is advisory, not a hard override.
 
 ## Alternatives
 
 - Repository-level `paseo.json` with `metadataGeneration.title.instructions`: must be committed to the base branch and is deterministic per repository.
-- Settings -> Host -> Metadata manual model: applies through host settings, with less per-repository control.
+- Settings -> Host -> Metadata manual model: applies to every metadata type on that host (titles, branch names, commit messages, and PR text), and when all configured models fail, nothing is generated.
 
 ## Uninstall
 

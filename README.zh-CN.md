@@ -2,6 +2,8 @@
 
 让 Paseo 自动生成的工作区和代理标题使用简体中文。[English](README.md)
 
+非官方社区插件，与 Paseo 无关联，也未获其认可。
+
 创建工作区或代理时，本插件会向 Paseo 内部的标题生成请求追加一条简体中文指令。生成的标题使用中文，同时保留文件名、路径、命令、编号和其他专有内容原样；git 分支仍使用 ASCII 小写 slug。
 
 ## 为什么需要它
@@ -24,7 +26,7 @@ Paseo 使用一次小型单次调用生成标题，提示词只有英文（`pack
 克隆本仓库，然后运行：
 
 ```text
-paseo plugin install F:\path\to\paseo-zh-titles
+paseo plugin install /path/to/paseo-zh-titles     # Windows: F:\path\to\paseo-zh-titles
 paseo plugin enable paseo-zh-titles
 ```
 
@@ -49,13 +51,13 @@ paseo plugin enable paseo-zh-titles
 
 - hook 依赖内部标题字符串 `Branch name generator`。如果 Paseo 重命名它，请修改 `TARGET_TITLE`；表现是标题会静默恢复为英文。
 - 只影响安装后生成的标题。
-- 不处理 commit message、PR 文本或分支名。若要处理这些内容，请使用仓库级 `paseo.json` -> `metadataGeneration.title.instructions`；它更确定，但需要逐仓库配置。
+- 本插件只处理标题。其他元数据类型请使用仓库级 `paseo.json` 键：`metadataGeneration.title.instructions`、`metadataGeneration.branchName.instructions`、`metadataGeneration.commitMessage.instructions`、`metadataGeneration.pullRequest.instructions`。每个条目都会替换 Paseo 对应产物的默认风格；该文件必须提交到 base branch。
 - 该指令是建议，不是强制覆盖。
 
 ## 替代方案
 
 - 仓库级 `paseo.json` 的 `metadataGeneration.title.instructions`：必须提交到 base branch，按仓库生效且更确定。
-- Settings -> Host -> Metadata 手动模型：通过主机设置生效，但逐仓库控制较少。
+- Settings -> Host -> Metadata 手动模型：会作用于该主机上的所有元数据类型（标题、分支名、commit message 和 PR 文本）；如果所有已配置模型都失败，则不会生成任何内容。
 
 ## 卸载
 
